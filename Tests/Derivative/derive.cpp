@@ -85,8 +85,8 @@ int main(int argc, char* argv[])
     vec sol;
     fvec fsol;
 
-    sol.copy_size(h);   sol.fill(double(1.0/3));
-    fsol.copy_size(h);  fsol.fill(double(1.0/3));
+    sol.copy_size(h);   sol.fill(1.0/3);
+    fsol.copy_size(h);  fsol.fill(1.0/3);
 
     print_data(h.n_elem, h, tp, ftp, second, fsecond);
     print_data_err(h.n_elem, h, tp, ftp, abs((tp-sol)/sol), abs((ftp-fsol)/fsol));

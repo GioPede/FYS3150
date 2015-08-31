@@ -1,0 +1,104 @@
+%\documentclass[8pt,a4paper]{article}
+\documentclass[8pt,a4paper,twocolumn]{article}
+%\documentclass[12pt,a4paper,titlepage]{article}
+%\documentclass[12pt,a4paper,titlepage]{report}
+%\documentclass[a4paper]{article}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\usepackage{siunitx}
+\usepackage{amssymb}
+
+\usepackage[hang,splitrule,multiple]{footmisc}
+\footnotemargin 2.5mm %Allineamento piè di pagina
+
+
+\usepackage[a4paper,top=1.60cm,bottom=2.00cm,left=1.5cm,right=1.5cm]{geometry}
+\linespread{1.1}
+\usepackage[tableposition=top,figureposition=bottom,font=small,format=hang]{caption}
+\captionsetup[table]{skip=\medskipamount}
+
+
+
+\usepackage{multicol} 
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{verbatim} %Per inserire codice
+\usepackage{url} %Per inserire siti
+\usepackage[colorlinks]{hyperref}
+\usepackage{amsmath}
+%\usepackage{mathtools}
+\begin{comment}
+\makeatletter
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+\end{comment}
+\usepackage{amssymb}
+%\usepackage{movie15}
+\usepackage[autoplay,loop]{animate} %Per inserire animazioni
+\usepackage{listings} %Per inserire codice
+\usepackage[usenames]{color} %Per permettere la colorazione dei caratteri
+\usepackage{enumitem}%per usare \begin{itemize}[leftmargin=-.5in]
+
+\newenvironment{listamia}% 
+{\begin{itemize}\setlength{\itemsep}{0cm}}
+	{\end{itemize}
+}
+
+\usepackage{mathcomp}
+
+\lstnewenvironment{codice_c}[1][]
+{\lstset{basicstyle=\small, columns=fullflexible,
+		keywordstyle=\color{red}\bfseries, commentstyle=\color{blue}, language=C, numbers=left, numberstyle=\tiny, stepnumber=2, tabsize=5, numbersep=5pt, showstringspaces=true, frame=tbrl, captionpos=t, float=htbp, #1}}{}
+\lstloadlanguages{c}
+
+\lstnewenvironment{codice_c_pic}[1][]
+{\lstset{basicstyle=\footnotesize, columns=fullflexible,
+		keywordstyle=\color{red}\bfseries, commentstyle=\color{blue}, language=C, numbers=left, numberstyle=\tiny, stepnumber=2, tabsize=5, numbersep=5pt, showstringspaces=true, frame=tbrl, captionpos=t, float=htbp, #1}}{}
+\lstloadlanguages{c}
+
+\lstnewenvironment{codice_c_piccolo}[1][]
+{\lstset{basicstyle=\footnotesize, columns=fullflexible,
+		keywordstyle=\color{red}\bfseries, commentstyle=\color{blue}, language=C, numbers=left, numberstyle=\tiny, stepnumber=2, tabsize=3, numbersep=5pt, showstringspaces=true, frame=tbrl, captionpos=t, float=htbp, #1}}{}
+\lstloadlanguages{c}
+
+
+
+
+%\usepackage{float}
+
+\usepackage{amsthm}
+\theoremstyle{plain} 
+\newtheorem{thm}{Teorema}[section] 
+\newtheorem{cor}[thm]{Corollario} 
+\newtheorem{lem}[thm]{Lemma} 
+\newtheorem{prop}[thm]{Proposizione} 
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[section]
+%\newtheorem{defn}{Definizione}[chapter] 
+
+\theoremstyle{remark} 
+\newtheorem{oss}{Osservazione} 
+
+\newcommand{\virgolette}[1]{``#1''}
+\newcommand\oo{{\footnotesize 00}}
+\newcommand\ouno{{\footnotesize 0}}
+
+\title{Finite Difference Approximation for Resolving Second Order ODEs}
+\author{Computational Pysics FYS3150\\ Giovanni Pederiva}
+\date{September 2015}
+
+\begin{document}
+\begin{twocolumn}
+
+\maketitle 
+\subsection*{Abstract}
+
+\end{twocolumn}
+\end{document}
