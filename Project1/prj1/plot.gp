@@ -2,7 +2,7 @@
 
 set mxtics 10
 set mytics 10
-set key bmargin
+set key top right
 set grid
 set bars small
 set terminal pngcairo enhanced font 'Arial, 20' background "#ffffff" fontscale 1.0 dashed size 1280,1280
@@ -23,8 +23,8 @@ set xrange [0:1]
 #set yrange [0:1.5]
 #set logscale x 
 #set logscale y
-set xlabel "h-step"
-set ylabel "Error"
+set xlabel "x"
+set ylabel "u(x)"
 
 f(x) = 1 - (1 - exp(-10)) * x - exp(-10*x)
 

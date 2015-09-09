@@ -11,3 +11,4 @@ print "plotting functions...\n"
 os.system("gnuplot plot.gp")
 print "plotting errors...\n"
 os.system("gnuplot plot_err.gp")
+os.system("gnuplot error.gp")

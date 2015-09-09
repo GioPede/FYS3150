@@ -22,13 +22,13 @@ set xrange [0:1]
 #set yrange [0:1.5]
 #set logscale x 
 set logscale y
-set xlabel "h-step"
-set ylabel "Error"
+set xlabel "x"
+set ylabel "u(x)"
 
 # Plot del modulo
-#plot '10err.txt' ls 1 w linespoints ti '10', '100err.txt' ls 2  w linespoints ti '100', '1000err.txt' ls 3  w linespoints ti '1000', '10000err.txt' ls 4  w linespoints ti '10000', '100000err.txt' ls 5  w linespoints ti '100000' , '1000000err.txt' ls 6  w linespoints ti '1000000' 
+plot 'Data/10err.txt' ls 1 w linespoints ti '10', 'Data/100err.txt' ls 2  w linespoints ti '100', 'Data/1000err.txt' ls 3  w linespoints ti '1000', 'Data/10000err.txt' ls 4  w linespoints ti '10000', 'Data/100000err.txt' ls 5  w linespoints ti '100000' , 'Data/1000000err.txt' ls 6  w linespoints ti '1000000' 
 
-plot 'Data/1000err.txt' ls 3  w linespoints ti '1000', 'Data/10000err.txt' ls 4  w linespoints ti '10000', 'Data/100000err.txt' ls 5  w linespoints ti '100000' , 'Data/1000000err.txt' ls 6  w linespoints ti '1000000' 
+#plot 'Data/1000err.txt' ls 3  w linespoints ti '1000', 'Data/10000err.txt' ls 4  w linespoints ti '10000', 'Data/100000err.txt' ls 5  w linespoints ti '100000' , 'Data/1000000err.txt' ls 6  w linespoints ti '1000000' 
 
 
 set output 'plot_errLU.png'
