@@ -1,0 +1,146 @@
+\documentclass[10pt,a4paper,titlepage]{article}
+\usepackage{latexsym}
+\usepackage[utf8x]{inputenc}
+\usepackage{booktabs,caption,amsfonts,amssymb,fancyhdr, amsmath}
+\usepackage[italian]{babel}
+\usepackage{indentfirst}
+\usepackage{float}
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\captionsetup[table]{position=top}
+\addtolength{\textwidth}{1cm}
+\addtolength{\hoffset}{-1cm}
+\pagestyle{headings}
+\begin{document}
+\begin{center}
+{\LARGE \bfseries Computational Physics\par}
+\vspace{0.5cm}
+{\LARGE \bfseries Project 1 \par}
+\end{center}
+
+\vspace{1cm}
+
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}l@{}}
+Academic year 2015-2016	 &Team group: \\
+						&Alessio Pizzini\\
+                        & Giulio Isacchini\\
+                        &Giovanni Pederiva\\
+                      &Mattia Alberto Ubertini\\
+                       
+ 
+                        
+\end{tabular*}
+\begin{center}
+\hrule height 2 pt
+\end{center} 
+\paragraph{Sto scrivendo un po di cose molto generali per ora, leggete e in caso aggiungete/corregete}
+In this project we've solved a one-dimensional Poisson equation with Dirichlet boundary conditions.
+The equation reads: $-u^{''}(x)=f(x)$ with $x [0;1]$ and $u(0)=u(1)=0$.
+These kinds of equations can be solved analytically. 
+In our case, $f(x)=100e^{-10x}$, so that the previous equation has a solution 
+$u_e(x)=1 − (1 − e^{−10} )x − e^ {−10x}$.
+In this work we've solved it numerically and then we've compared our solution with the analytic one. 
+The first step we did has been the discretization of our domain and consequently of the functions in the equation. Then through the 3-point formula for the second derivative we've rewritten the equation in this way: $-\frac{u_{i-1}+u{i+1}-2u_{i}}{h^2}=f_i$ .
+At this point the problem becomes a linear equation system with unknown variables the $u_{i}$, where $u_{i}$ means the function u evaluated at the point $x_{i}$ and the same with $f_{i}$.
+The system can be written as $A u = \tilde {f}$ where  $\tilde {f}= h^2 f$. 
+The matrix is tridiagonal, and the tridiagonal system related to it can be written as: $$a_iv_{i-1}+b_iv_i+c_iv_{i-1}=\tilde{f_i}$$
+in our case the coefficients are costant, precisely $b=2$ , $ a=c=-1$. 
+We've coded an alghoritm for solving this systems. 
+The alghoritm written is built upon the Gaussian elimination method. 
+The alghoritm consists in a procedure divided in two parts, the first step basically let us to reduce the matrix and consecutively to compute directly the last component $u_i$, in the second part we use the last component to compute recursively the previous ones.  
+
+
+\section{A}
+In order to solve the differential equation:
+\[
+-u''(x) = f(x), \hspace{0.5cm} x\in(0,1), \hspace{0.5cm} u(0) = u(1) = 0.
+\]
+you discretize the problem into the numerical equation
+\[
+   -\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=1,\dots, n,
+\]
+where $f_i=f(x_i)$.
+If you define the three quantities:
+\[
+    {\bf A} = \left(\begin{array}{cccccc}
+                           2& -1& 0 &\dots   & \dots &0 \\
+                           -1 & 2 & -1 &0 &\dots &\dots \\
+                           0&-1 &2 & -1 & 0 & \dots \\
+                           0& \dots   & \dots &\dots   &\dots & \dots \\
+                           0&\dots   &  &-1 &2& -1 \\
+                           0&\dots    &  & 0  &-1 & 2 \\
+                      \end{array} \right)
+	\hspace{0.5cm}
+    {\bf v} = \left(\begin{array}{c}
+                           v_1\\
+                           v_2\\
+                           \dots\\
+                           v_i\\
+                           \dots\\
+                           v_n\\
+                      \end{array} \right)
+                      \hspace{0.5cm}
+	{\bf \tilde{g}} = \left(\begin{array}{c}
+                           \tilde{g}_1\\
+                           \tilde{g}_2\\
+                           \dots\\
+                           \tilde{g}_i\\
+                           \dots\\
+                           \tilde{g}_n\\
+                      \end{array} \right)                  
+\]
+with $\tilde{g}_i=h^2 f_i$
+it is trivial to show that the numerical equation can be rewritten as:
+\[
+   {\bf A}{\bf v} = \tilde{{\bf b}},
+\]
+In order to solve it with compare three different algorithms:
+\begin{itemize}
+\item {\bf Tridiagonal Matrix Algorithm}, also known as the Thomas algorithm
+\item Standard Gaussian Elimination
+\item LU decomposition
+\end{itemize}
+\paragraph{Tridiagonal Matriix Algorithm} Given a general tridiagonal matrix system:
+\[
+    {\bf M} = \left(\begin{array}{cccccc}
+                           b_1& c_1& 0 &\dots   & \dots &0 \\
+                           a_2 & b_2 & c_3 &0 &\dots &\dots \\
+                           0&a_3 &2 & b_3 & 0 & \dots \\
+                           0& \dots   & \dots &\dots   &\dots & 0 \\
+                           0&\dots   &\dots  &\dots  &\dots& c_{n-1} \\
+                           0&\dots &\dots  &0  &a_{n} & b_n \\
+                      \end{array} \right)
+                       \left(\begin{array}{c}
+                           v_1\\
+                           v_2\\
+                           \dots\\
+                           v_i\\
+                           \dots\\
+                           v_n\\
+                      \end{array} \right)
+	= \left(\begin{array}{c}
+                           \tilde{g}_1\\
+                           \tilde{g}_2\\
+                           \dots\\
+                           \tilde{g}_i\\
+                           \dots\\
+                           \tilde{g}_n\\
+                      \end{array} \right)    
+\]   
+The algorithm can be summed up in:
+\begin{itemize} 
+\item Forward sweep:
+\[\huge
+	c'_i= \begin{cases} 
+			\frac{c_i }{b_i }  & i=1 \\
+			\frac{c_i}{b_i-a_i c'_{i-1}} & i=2,\dots,n. 
+		\end{cases}
+	\hspace{0.5cm}
+	\tilde{g}'_i= \begin{cases} 
+					\frac{\tilde{g}_i}{b_i}  & i=1 \\
+					\frac{\tilde{g}_i- a_i \tilde{g}'_{i-1}}{b_i-a_i c'_{i-1}} & i=2,\dots,n. 
+				\end{cases}
+\]
+\end{itemize}
+\end{document}

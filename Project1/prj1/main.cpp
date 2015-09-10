@@ -29,35 +29,28 @@ inline double ua (double x) {
 //      - u''(x) + f(x) = 0
 double * compute_vectors (unsigned int size, double *A, double *B, double *C, double *D, bool speed = 0) {
 	double *v = new double[size];
-	double *t = new double[size];
-    
 	
 	//General tridiagonal matrix solver
 	if(!speed){
 		//forward substitution
-		C[0] = C[0] / B[0];
-		D[0] = D[0] / B[0];
 		for (unsigned int i = 1; i < size; i++){
-			double temp =  1 / (B[i] - A[i] * C[i - 1]);
-			C[i] *= temp;
-			D[i] = (D[i] - A[i] * D[i - 1]) * temp;
+			B[i] = B[i] - A[i] / B[i - 1] * C[i];
+			D[i] = D[i] - D[i - 1] * A[i] / B[i - 1];
 		}
-		
 		//backword substitution
-		v[size - 1] = D[size - 1];
-		for (unsigned int i = size - 2; i > 0; i--)
-			v[i] = D[i] -  C[i] * v[i + 1];
-		
+		v[size - 1] = D[size - 1] / B[size - 1];
+		for (int i = size - 2; i >= 0; i--)
+			v[i] = (D[i] -  C[i] * v[i + 1] ) / B[i];
 	}
 	
-	//Optimized 4n algorithm for the particular problem
+	
+	//Optimized 6n algorithm for the particular problem
 	else {
 		//forward substitution
 		for (unsigned int i = 1; i < size; i++){
 			B[i] -= 1 / B[i - 1];
 			D[i] += D[i - 1] / B[i - 1];
-		}
-		
+		}	
 		//backward substitution
 		v[size - 1] = D[size - 1] / B[size - 1];
 		for (int i = size - 2; i >= 0; i--)
@@ -65,7 +58,6 @@ double * compute_vectors (unsigned int size, double *A, double *B, double *C, do
 	}	
 	return v;
 	delete [] v;
-	delete [] t;
 }
 
 
@@ -155,13 +147,13 @@ int main(int argn, char* argv[]) {
 			a[i] = -1;
 			b[i] = 2;
 			c[i] = -1;
-			d[i] = f(x_0 + (i+1) * h) * h * h;
-			ue[i] = ua(x_0 + (i+1) * h);
+			d[i] = f(x_0 + (i + 1) * h) * h * h;
+			ue[i] = ua(x_0 + (i + 1) * h);
 		}
 
 		clock_t start, stop;
 		start = clock();
-		u = compute_vectors(n, a, b, c, d, 1);
+		u = compute_vectors(n, a, b, c, d);
 		stop = clock();
 		float time = ((float)stop-(float)start)/CLOCKS_PER_SEC;
 		printf("Vector time %d \t = %.10lf\n", n, time);
@@ -254,8 +246,8 @@ int main(int argn, char* argv[]) {
 			a[i] = -1;
 			b[i] = 2;
 			c[i] = -1;
-			d[i] = f(x_0 + (i+1) * h) * h * h;
-			ue[i] = ua(x_0 + (i+1) * h);
+			d[i] = f(x_0 + (i + 1) * h) * h * h;
+			ue[i] = ua(x_0 + (i + 1) * h);
 		}
 		u = compute_vectors(n, a, b, c, d, 1);
 		e = compute_error(n, u, ue);
