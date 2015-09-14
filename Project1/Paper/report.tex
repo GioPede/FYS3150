@@ -36,9 +36,7 @@
 \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}l@{}}
 Academic year 2015-2016	 &Team group: \\
 						&Alessio Pizzini\\
-                        & Giulio Isacchini\\
                         &Giovanni Pederiva\\
-                      &Mattia Alberto Ubertini\\
                        
  
                         
@@ -286,6 +284,7 @@ To get a closer look to the precision of our algorithm we plotted a graph showin
 To understand better how the precision of our algorithm depends on the step length $h$, we plotted a graph showing the modulus of the difference between our extimate of the value of the function for x=0.5 and the value of the analytical value for the same value of x versus the step lenght $h$:
 \begin{center}
 	\includegraphics[width=0.5\columnwidth]{error.png}
+    \captionof{figure}{{\footnotesize  Relative error of the solution we found, evaluated for $x=0.5$ at different values of h}}
 \end{center}
 It is now clear that there are two sources of error: the machine error, which is preponderant for smaller values of $h$, and the approximation error, preponderant for bigger values of h. It is possible to find the value of $h$ minimizing the total error simply by computing the derivative of the formula for the total error on the variable $h$: the three points formula error is given by: 
 $$\varepsilon_{3p}=\frac{f^{(3)}*h^{2}}{6}$$
@@ -297,6 +296,7 @@ Evaluating this formula in our case, and assuming $\varepsilon = 10^{-15}$ one g
 An analogous analysis has been carried out for the LU decomposition, but we couldn't increase the number of points over 1000 since the number of FLOPS scales as $O_(n^{3})$ (while in our simplified version of the Gaussian elimination this number scales as $O(n)$). Here's the result:
 \begin{center}
 	\includegraphics[width=0.5\columnwidth]{plot_errLU.png}
+    \captionof{figure}{{\footnotesize Relative error as a function of position for all the data series of the LU decomposition }}
 \end{center}
 The error is the same as with the previous algorithms with equal step length $h$ and as in the previous case, the error scales as $\frac{1}{h^{2}}$. 
 The influence of the roundoff error can't be seen since $h$ is never small enough. 
@@ -314,6 +314,7 @@ $h$ & Vector 9 FLOPS & Vector 6 FLOPS & Matrix \\\hline
   $10^{-5}$ & 0.004137 s& 0.003818 s& $/$\\\hline
   $10^{-6}$ & 0.046839 s& 0.038214 s& $/$\\\hline
 \end{tabular}
+\captionof{table}{{\footnotesize Computation time of the different algorithms for different $h$ step sizes. }}
 \end{center}
 As expected, the time elapsed scales about as $O(n)$ as for the simplified algorithm for tridiaginal matrices,  while is scales as $O(n^3)$ for the LU decomposition.  It's a little faster for the $O(6n)$ but not as much as we were expecting, probably because we are not considering other minor operations required for the algorithm (such as index operations) that reduce the rate between the two. \\
 We can also notice that the values for $h = 0.1$ are higher than expected for all algorithms, this is probably due to the fact that the total number of operation is really limited, and the time elapsed for other CPU operations (like the call of the function itself) take an amount of time comparable to the one of the operations.
