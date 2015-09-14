@@ -153,14 +153,14 @@ int main(int argn, char* argv[]) {
 
 		clock_t start, stop;
 		start = clock();
-		u = compute_vectors(n, a, b, c, d);
+		u = compute_vectors(n, a, b, c, d, 1);
 		stop = clock();
 		float time = ((float)stop-(float)start)/CLOCKS_PER_SEC;
 		printf("Vector time %d \t = %.10lf\n", n, time);
 		
 		generate_file(u, n , h);
 		e = compute_error(n, u, ue);
-		generate_file(e, n , h, 1);
+		generate_file(e, n , h);
 		delete [] a;
 		delete [] b;
 		delete [] c;
