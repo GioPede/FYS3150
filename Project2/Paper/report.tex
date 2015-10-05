@@ -40,14 +40,14 @@ Academic year 2015-2016	 \hfill Giovanni Pederiva
 
 \subsection*{Abstract}
 The goal of this project was to solve Schr\"odinger's equation to find the wave function of a system composed by an electron in a harmonic oscillator 
-potential. The task could be written as a eigenvalue problem, so the implementation needed to solve the equation turned out to be the Jacobi method 
+well. The task could be written as an eigenvalue problem, so the implementation needed to solve the equation turned out to be the Jacobi method 
 (or also known as Given's rotations) to diagonalize a matrix containing the discretization of the equation at different integration points. Once the 
 matrix was written in a diagonal form I simply had to look at the lowest eigenstates and the relative eigenvectors, which gave the energy of the particle 
-and the wave function respectively. We also had a closed form equation for the lowest eigenvalues to test our results with.\\
+and the wave function respectively. There also is a closed form equation for the lowest eigenvalues to test the results with.\\
 The second part of the project consisted in a similar problem, except that two interacting electron were to be considered inside the harmonic oscillator
 potential. By rewriting Schr\"odinger's equation in terms of the center of mass it turned out that very few changes to the previous problem were needed, 
 namely the potential function.\\
-On the programming side, the goal of the projevt was to implement and test diagonalization algorithms and to develop some reproducible tests and 
+On the programming side, the goal of the project was to implement and test diagonalization algorithms and to develop some reproducible tests and 
 benchmarks for our algorithm, to show that it is working properly.
 
 \subsection*{Analysis Of The Problem}
@@ -73,7 +73,6 @@ conditions that are easier to handle $u(0)=0$ and $u(\infty)=0$. So now the equa
 \begin{equation}
   -\frac{\hbar^2}{2 m} \frac{d^2}{dr^2}~u(r) + V(r)~u(r)  = E~u(r) .
 \end{equation}
-The boundary conditions are $u(0)=0$ and $u(\infty)=0$.
 With the aim of getting to a dimensionless form for Schr\"odinger's equation we now introduce a dimensionless variable $\rho = (1/\alpha) r$ where 
 $\alpha$ is a constant with dimension length and get:
 \begin{equation}
@@ -163,7 +162,7 @@ We can now write the Schr\"odinger equation in a discretized form (for simplicit
 \begin{equation}
 -\frac{u_{i+1} -2u_i +u_{i-1} }{h^2}+V_iu_i  = \lambda u_i,
 \end{equation}
-where $V_i$ is the harmonic oscillator potential either alone or with the addition of the Coulomb potential term. If we trite out the matrix we can also 
+where $V_i$ is the harmonic oscillator potential either alone or with the addition of the Coulomb potential term. If we write out the matrix we can also 
 add in the potential terms. The matrix is now a tridiagonal matrix, and the equation can be written:
 \[
     \left( \begin{array}{ccccccc} \frac{2}{h^2}+V_1 & -\frac{1}{h^2} & 0   & 0    & \dots  &0     & 0 \\
@@ -289,7 +288,7 @@ $E_2$  &        11 & 10.99987  \\\hline
 \captionof{figure}{{\footnotesize  Expected eigenvalues and numerically found ones.}}
 \end{center}
 To achive this precision however it was necessary to set up a matrix of dimension 250 in the interval $(0,5)$ and due to it's dimension it required 
-approximately 40000 iterations, or in seconds $\simeq 2.5 s$. This shows how inefficient this method is, especially beacuse we had a very simple matrix
+approximately 40000 iterations, or in seconds $\simeq 5.5 s$. This shows how inefficient this method is, especially beacuse we had a very simple matrix
 as a tridiagonal one, so a better and specific algorithm could have been used, like Francis' algorithm or the QL algorithm with implicit shifts found
 on "Numerical Recipes" by William H. Press (function name \texttt{tqli}). I made an implementation of the latter and compared the number of total 
 iterations along the matrix of the two methods. Here are the results:\\
@@ -321,15 +320,15 @@ Here's a plot of the different wave functions.  \\
 	\includegraphics[width=0.8\textwidth]{plot_omega.png}
     \captionof{figure}{{\footnotesize  $|\psi(x)|^2$ for the two particle system with different values of $\omega$}}
 \end{minipage}\\
-As expected if the harmonic oscillator is very weak if compared to the Coulomb interaction then the particle stend to be further apart, but if it gets 
+As expected if the harmonic oscillator is very weak if compared to the Coulomb interaction then the particles tend to be further apart, but if it gets 
 stronger then the wave function tends to the one of the one particle system. The strangeness in slope for the $|\psi(x)|^2$ for $\omega = 0.01$ can be
 due to the roundoff errors and machine error.
 
 \subsection*{Conclusions}
 This project showed that some quantum mechanical systems can be solved numerically by using diagonalization algorithms. The easiest to implement is the 
-Jacobi algorithm which is very stable but requires a lot of computation time. The algorithm \texttt{tqli} found in literature apllies more similarity
+Jacobi algorithm which is very stable but requires a lot of computation time. The algorithm \texttt{tqli} found in literature applies more similarity
 transformation, but is much faster in computation time. \\
 The application of these methods to Schr\"odinger equation in the case of a single electron in a three dimensional harmonic oscillator well
-gev us the expected results, as it did for the two electron system when changing the value $\omega$. The behavior of the probability
-density function which has been found is the one we expected, also in comparison with its corresponding one without the Coulomb interaction. 
+gave us the expected results, as it did for the two electron system when changing the value $\omega$. The behaviour of the probability
+density function which has been found is the one we expected, also in comparison to its corresponding one without the Coulomb interaction. 
 \end{document}
