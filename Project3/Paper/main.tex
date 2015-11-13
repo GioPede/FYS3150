@@ -26,6 +26,9 @@
 \addtolength{\textwidth}{1cm}
 \addtolength{\hoffset}{-1cm}
 \pagestyle{headings}
+
+
+
 \begin{document}
 \begin{center}
 {\LARGE \bfseries Computational Physics\par}
@@ -43,9 +46,11 @@ Academic year 2015-2016	 &Team group: \\
                         &Mattia Ubertini\\
                                            
 \end{tabular*}
+
 \begin{center}
 \hrule height 2 pt
 \end{center} 
+
 \section{Abstract}
 The aim of this project is to compute numerically a six-dimensional integral, used to determine the ground state correlation energy between two electrons in a helium atom. This task has been achieved with different methods, namely: Gauss-Legendre quadrature, Gauss-Laguerre, brute force Monte Carlo and Monte Carlo with importance sampling. The results have then been compared and discussed. The code developed to solve the problem\footnote{The full code can be found on GitHub \url{https://github.com/GioPede/FYS3150/blob/master/Project3/main.cpp}} had also to be parallelized and a check of the time of computation was required.
 
@@ -217,7 +222,7 @@ But this method seems to be more stable than the previous one as we can see in t
 \begin{tabular}{|c|c|c|}
 \hline
 Number of integration points          &  $I_{Leg}$    &  $I_{LL}$               \\\hline
-$10$ &  $0.07197968$ & $0.17708077$ \\\hline
+$10$ &  $0.07197968$ & $0.17708077$ \\ \hline
 $15$ & $0.23908829$ & $0.19328534$ \\\hline
 $20$ & $0.15613939$ & $0.19478558$  \\\hline
 $25$ & $0.19581657$ & $0.19480424$  \\\hline

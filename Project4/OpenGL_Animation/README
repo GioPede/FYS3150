@@ -1,0 +1,8 @@
+This is a very early version of the code (might not work exactly well eiter)
+but gives a rough visual impression of the system. It represents a 150x150 
+matrix being cooled down in steps of 0.1 from 3 to 1. 
+It's interesting to see the behaviour after the critical temperature.
+
+We used OpenGL and GLUT to create the visual animation.
+
+Usage: either run the program directly or compile using the python makefile. 

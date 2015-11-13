@@ -1,0 +1,11 @@
+These are the data and plots that we obtained by computing the energy, 
+magnetization, heat capacity and susceptibility for matrices of size
+20, 40, 60, 80, 100, 150 and 200. 
+All systems were run at temperatures increasing from 1.6 to 3.0 with a 
+smaller step around the critical temperature using 1 million Monte Carlo
+steps times the size of the matrix squared (to have a uniform amount
+of flips per spin at different sizes) for each temperature. 
+The data have been collected after 50000 steps for thermalization purposes.
+
+We then analysed the data to extract the value of the critical temperature
+from the peaks of heat capacity and susceptibility.

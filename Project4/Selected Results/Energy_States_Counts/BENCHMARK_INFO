@@ -1,0 +1,4 @@
+These are the data and plots that we obtained by computing the energy over
+a 20x20 lattice counting each energy state and the number of accepted 
+configurations. The data is collected at temperatures from 1 to 3 at steps 
+of 0.2 using 10 millions cycles for each temperature.
